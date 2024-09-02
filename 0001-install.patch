@@ -1,0 +1,61 @@
+From fc09234e2cf69169bdbd24e77d401baa56a88a79 Mon Sep 17 00:00:00 2001
+From: wjyrich <1071633242@qq.com>
+Date: Thu, 15 Aug 2024 14:54:19 +0800
+Subject: [PATCH] install
+
+---
+ QSLAM/QSLAM/QSLAM.desktop         | 11 +++++++++++
+ QSLAM/QSLAM/QSLAM.pro             |  9 +++++++++
+ QSLAM/QSLAM/src/settingdialog.cpp |  2 +-
+ 3 files changed, 21 insertions(+), 1 deletion(-)
+ create mode 100644 QSLAM/QSLAM/QSLAM.desktop
+
+diff --git a/QSLAM/QSLAM/QSLAM.desktop b/QSLAM/QSLAM/QSLAM.desktop
+new file mode 100644
+index 0000000..6458297
+--- /dev/null
++++ b/QSLAM/QSLAM/QSLAM.desktop
+@@ -0,0 +1,11 @@
++[Desktop Entry]
++Categories=Accessibility;Qt;Utility;
++Exec=QSLAM
++Name=QSLAM
++Name[zh_CN]=QSLAM
++Icon=nascar_racing_car
++StartupNotify=false
++Terminal=false
++Type=Application
++GenericName=QSLAM
++Version=1.0
+diff --git a/QSLAM/QSLAM/QSLAM.pro b/QSLAM/QSLAM/QSLAM.pro
+index 7080f91..f275d7b 100644
+--- a/QSLAM/QSLAM/QSLAM.pro
++++ b/QSLAM/QSLAM/QSLAM.pro
+@@ -44,3 +44,12 @@ FORMS    += mainwindow.ui \
+ 
+ RESOURCES += \
+     resources.qrc
++
++
++target.path = $$PREFIX/bin
++desktop.files = QSLAM.desktop
++desktop.path = $$PREFIX/share/applications/
++icons.path = $$PREFIX/share/icons
++icons.files = resources/nascar_racing_car.png
++
++INSTALLS += target desktop icons
+diff --git a/QSLAM/QSLAM/src/settingdialog.cpp b/QSLAM/QSLAM/src/settingdialog.cpp
+index 66e350b..484538f 100644
+--- a/QSLAM/QSLAM/src/settingdialog.cpp
++++ b/QSLAM/QSLAM/src/settingdialog.cpp
+@@ -1,6 +1,6 @@
+ #include "settingdialog.h"
+ #include "ui_settingdialog.h"
+-
++#include <QIcon>
+ SettingDialog::SettingDialog(QWidget *parent) :
+     QDialog(parent),
+     ui(new Ui::SettingDialog)
+-- 
+2.43.4
+

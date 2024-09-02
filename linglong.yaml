@@ -1,0 +1,29 @@
+version: "1"
+
+package:
+  id: io.github.QSLAM
+  name: QSLAM
+  version: 0.0.0.1
+  kind: app
+  description: |
+    Robotics Simultaneous Localization and Mapping
+
+command:
+  - /opt/apps/io.github.QSLAM/files/bin/QSLAM
+
+base: org.deepin.foundation/23.0.0
+runtime: org.deepin.Runtime/23.0.1
+
+sources:
+  - kind: git
+    url: https://github.com/malichao/SLAM.git
+    version: master
+    commit: fe3e70a5385f849876a0a3f6bd5f2b7810c3c912
+
+build: |
+  cd /project/linglong/sources/SLAM.git
+  git apply ../../../0001-install.patch
+  cd QSLAM/QSLAM
+  qmake -makefile PREFIX=${PREFIX} LIB_INSTALL_DIR=${PREFIX}/lib/${TRIPLET}
+  make -j$(nproc)
+  make install
